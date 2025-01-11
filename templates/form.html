@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+    <h1>{{ action }}</h1>
+    <form method="POST">
+        <label>Title:</label><br>
+        <input type="text" name="title" value="{{ post.title if post else '' }}" required><br>
+        <label>Content:</label><br>
+        <textarea name="content" rows="5" required>{{ post.content if post else '' }}</textarea><br>
+        <button type="submit">{{ action }}</button>
+    </form>
+{% endblock %}

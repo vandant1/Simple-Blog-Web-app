@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Postmark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/new_style.css') }}">
+</head>
+<body>
+    <nav>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('logout') }}">Logout</a> |
+            <a href="{{ url_for('create_post') }}">New Post</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a> |
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+        <a href="{{ url_for('index') }}">Home</a>
+    </nav>
+    <hr>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+</html>
